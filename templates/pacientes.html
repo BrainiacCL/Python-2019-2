@@ -1,7 +1,7 @@
  <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Pacientes</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -13,24 +13,27 @@
 <body>
 
 <div class="container">
-  <h2>pacientes</h2>
+  <h1>  Pacientes</h1>
 
-  <table class="table table-hover" id="myTable">
+  <table class="table table-hover cell-border" id="myTable">
     <thead>
       <tr>
-        <th>codigo</th>
-        <th>nombre</th>
-        <th>rut</th>
-        <th>fecha nacimiento</th>
+        <th>Rut</th>
+        <th>Nombre</th>
+        <th>Fecha nacimiento</th>
+        <th>Vacunas</th>
       </tr>
     </thead>
     <tbody>
       {% for paciente in pacients %}
         <tr>
-          <td>{{ paciente['cod_paciente'] }}</td>
-          <td>{{ paciente['nombre'] }}</td>
           <td>{{ paciente['rut'] }}</td>
+          <td>{{ paciente['nombre'] }}</td>
           <td>{{ paciente['fecha_nacimiento'] }}</td>
+          <td>
+            <a href="#"> Agregar</a>
+            <a href="#"> Ver</a>
+          </td>
           
           
         </tr>

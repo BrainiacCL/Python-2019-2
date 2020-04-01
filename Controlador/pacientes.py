@@ -7,7 +7,7 @@ import pymysql.cursors
 app = Flask(__name__)
 
 app.config["MYSQL_DATABASE_USER"] = "root"
-app.config["MYSQL_DATABASE_DB"] = "pacientes"
+app.config["MYSQL_DATABASE_DB"] = "vacunas"
 
 mysql = MySQL(app)
 mysql.connect_args["autocommit"] = True
@@ -21,7 +21,7 @@ def pacientes():
 	pacientes = cursor.fetchall()
 
 
-	return render_template("vacunas.html", pacients = pacientes)
+	return render_template("pacientes.html", pacients = pacientes)
 
 
 if __name__ == "__main__":
