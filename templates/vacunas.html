@@ -1,0 +1,114 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Vacunas </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+<div class="container">
+ <b><center><h1>Vacunas</h1></center></b>
+
+ <div class="opciones">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Nuevo</button>
+        <a href="pacientes" class="btn btn-danger">Volver</a>
+    </div>
+
+    <br>
+    <br>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Nueva Vacuna</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          </div>
+            <div class="modal-body">
+              <form action="{{ url_for('vacunaNueva')}}" method="POST">
+                <div class="form-group">
+                  <label for="nombre" class="col-form-label">Nombre:</label>
+                  <input type="text" class="form-control" id="nombre" name="nombre"></input>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                  <button type="submit" class="btn btn-primary">Registrar</button>
+                </div>
+            </div>
+          </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+      <table class="table table-hover" id="myTable">
+        <thead>
+          <tr>
+            <th>Enfermedad</th>
+            <th>Fecha Registro</th>
+            <th>Pacientes</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for vacuna in vacuneitor %}
+            <tr>
+              <td>{{ vacuna['nombre_enfermedad'] }}</td>
+              <td>{{ vacuna['fecha_ingreso'] }}</td>
+              <td>
+                <a href="/">Ver</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+     </table>
+</div>
+
+</body>
+<script type="text/javascript">
+  $(document).ready( function () {
+    $('#myTable').DataTable();
+  });
+
+  $('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+})
+</script>
+</html>
+
+<style >
+  
+html{
+    font-size: 62.5% /** RESET PARA REMS - 62.5% = 10px de 16px **/
+}
+*,*:before, *:after{
+    box-sizing: inherit;
+}
+.fw-300{
+    font-weight: 300;
+}
+
+.contenedor {
+    max-width: 120rem; /** =1200px **/
+    margin: 0 auto;
+}
+
+.centrar-texto{
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.opciones{
+  display: flex!important;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 3rem;
+}
+  
+</style>

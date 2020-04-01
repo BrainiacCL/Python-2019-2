@@ -13,11 +13,11 @@
 <body>
 
 <div class="container">
-  <h1>  Pacientes</h1>
+  <b> <center><h1>Pacientes</h1></center> </b>
 
     <div class="opciones">
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Nuevo</button>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Vacunas</button>
+        <a href="vacunas" class="btn btn-danger">Vacunas</a>
       
     </div>
     <br>
@@ -94,3 +94,35 @@
 })
 </script>
 </html>
+
+
+<style >
+  
+html{
+    font-size: 62.5% /** RESET PARA REMS - 62.5% = 10px de 16px **/
+}
+*,*:before, *:after{
+    box-sizing: inherit;
+}
+.fw-300{
+    font-weight: 300;
+}
+
+.contenedor {
+    max-width: 120rem; /** =1200px **/
+    margin: 0 auto;
+}
+
+.centrar-texto{
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.opciones{
+  display: flex!important;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 3rem;
+}
+
+</style>
