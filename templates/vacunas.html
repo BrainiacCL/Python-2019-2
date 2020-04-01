@@ -56,17 +56,17 @@
             <th>Pacientes</th>
           </tr>
         </thead>
-        <tbody>
-          {% for vacuna in vacuneitor %}
-            <tr>
-              <td>{{ vacuna['nombre_enfermedad'] }}</td>
-              <td>{{ vacuna['fecha_ingreso'] }}</td>
-              <td>
-                <a href="/">Ver</a>
-              </td>
-            </tr>
-          {% endfor %}
-        </tbody>
+          <tbody>
+            {% for vacuna in vacuneitor %}
+              <tr>  
+                <td>{{ vacuna['nombre_enfermedad'] }}</td>
+                <td>{{ vacuna['fecha_ingreso'] }}</td>
+                <td>
+                  <a href="/">Ver</a>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
      </table>
 </div>
 
@@ -87,9 +87,7 @@
 html{
     font-size: 62.5% /** RESET PARA REMS - 62.5% = 10px de 16px **/
 }
-*,*:before, *:after{
-    box-sizing: inherit;
-}
+
 .fw-300{
     font-weight: 300;
 }

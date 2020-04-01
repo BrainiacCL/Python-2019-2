@@ -43,7 +43,7 @@ def vacunaNueva():
 		
 	return redirect(url_for('vacunas'))
 
-@app.route('/nuevoPaciente', methods=["POST"])
+@app.route('/', methods=["POST"])
 def pacienteNuevo():
 	cursor = mysql.get_db().cursor()
 	try:
@@ -69,6 +69,16 @@ def pacientes():
 	return render_template("pacientes.html", pacients = pacientes)
 
 
+@app.route('/vacunasPaciente/<string:rut>')
+def vacunasP(rut):
+	cursor = mysql.get_db().cursor()
+	cursor.execute("SELECT P.nombre, V.nombre_enfermedad, R.fecha_vacunacion  FROM paciente P, recibe R, vacuna V WHERE P.rut = R.rut_paciente AND R.cod_vacuna = V.cod_vacuna AND P.rut = %s",(rut))
+	vervacunas = cursor.fetchall()
+
+	cursor.execute("SELECT nombre FROM paciente WHERE rut = %s", (rut))
+	nombre = cursor.fetchall()
+
+	return render_template("vacunasPaciente.html", vacuns = vervacunas, nombres = nombre)
 
 if __name__ == "__main__":
 	app.run(debug=True)
