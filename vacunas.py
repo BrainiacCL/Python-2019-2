@@ -80,6 +80,17 @@ def vacunasP(rut):
 
 	return render_template("vacunasPaciente.html", vacuns = vervacunas, nombres = nombre)
 
+@app.route('/pacientesVacuna/<string:cod_vacuna>')
+def verPacientes(cod_vacuna):
+    cursor = mysql.get_db().cursor()
+    cursor.execute("SELECT P.nombre, R.fecha_vacunacion FROM paciente P, recibe R, vacuna V WHERE P.rut = R.rut_paciente AND R.cod_vacuna = V.cod_vacuna AND V.cod_vacuna = %s",(cod_vacuna))	
+    pacientesAll = cursor.fetchall()
+
+    cursor.execute("SELECT nombre_enfermedad FROM vacuna WHERE cod_vacuna = %s",(cod_vacuna))
+    vacunaN = cursor.fetchall()
+
+    return render_template("pacientesVacuna.html", vpac = pacientesAll, vacunas = vacunaN)
+
 if __name__ == "__main__":
 	app.run(debug=True)
 

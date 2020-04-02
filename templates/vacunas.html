@@ -51,6 +51,7 @@
       <table class="table table-hover" id="myTable">
         <thead>
           <tr>
+            <th>Código</th>
             <th>Enfermedad</th>
             <th>Fecha Registro</th>
             <th>Pacientes</th>
@@ -58,11 +59,12 @@
         </thead>
           <tbody>
             {% for vacuna in vacuneitor %}
-              <tr>  
+              <tr>
+                <td>{{ vacuna['cod_vacuna'] }}</td>  
                 <td>{{ vacuna['nombre_enfermedad'] }}</td>
                 <td>{{ vacuna['fecha_ingreso'] }}</td>
                 <td>
-                  <a href="/">Ver</a>
+                  <a href="pacientesVacuna/{{vacuna.cod_vacuna}}" class="btn btn-danger">Ver</a>
                 </td>
               </tr>
             {% endfor %}
