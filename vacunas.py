@@ -92,7 +92,7 @@ def verPacientes(cod_vacuna):
     return render_template("pacientesVacuna.html", vpac = pacientesAll, vacunas = vacunaN)
 
 
-@app.route('/vacunarPacientes/<string:rut>')
+@app.route('/mostrarDatos/<string:rut>')
 def mostrarDatos(rut):
 
 	cursor = mysql.get_db().cursor()
@@ -108,14 +108,11 @@ def mostrarDatos(rut):
 	return render_template("vacunarPacientes.html", vacunss = vervacunas, patiens = paciente)
 	
 
-@app.route('/', methods=["POST"])
-def vacunarP():
+@app.route('/vacunar/<string:rut>', methods=["POST"])
+def vacunarP(rut):
 	cursor = mysql.get_db().cursor()
-	
 	ahora = datetime.now()
 	fecha_vacunacion = ahora.strftime("%Y-%m-%d")
-	nombre = request.form["nombre"]
-	rut = request.form["rut"]
 	cod_vacuna = request.form["nombre_enfermedad"]
 	sql = "INSERT INTO recibe (rut_paciente, cod_vacuna, fecha_vacunacion) VALUES (%s,%s,%s)"
 	cursor.execute(sql,(rut,cod_vacuna,fecha_vacunacion))

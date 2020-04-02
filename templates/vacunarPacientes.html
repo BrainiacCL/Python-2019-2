@@ -14,32 +14,32 @@
 <body>
 
 <div class="container">
- {% for nombre in patiens %}
-  <b><center><h1>Vacunar a {{ nombre['nombre'] }}</h1></center></b>
+ {% for paciente in patiens %}
+  <b><center><h1>Vacunar a {{ paciente['nombre'] }}</h1></center></b>
  {% endfor %}
   <div class="opciones">
         <a href="../pacientes" class="btn btn-danger">Volver</a>
   </div>
   <br>
-  
-  <form action="{{ url_for('vacunarP')}}" method="POST">
-    {% for nombre in patiens %}
+     {% for paciente in patiens %}
+  <form action="/vacunar/{{ paciente['rut'] }}" method="POST">
+ 
       <label for="rut" class="col-form-label">Rut:</label>
-      <input disabled type="text" class="form-control" name="rut" value="{{ nombre['rut'] }}">
+      <input disabled type="text" class="form-control" name="rut" value="{{ paciente['rut'] }}">
      
 
       <label for="nombre" class="col-form-label">Nombre:</label>
-      <input disabled type="text" class="form-control" name="nombre" value="{{ nombre['nombre'] }}"></input>
+      <input disabled type="text" class="form-control" name="nombre" value="{{ paciente['nombre'] }}"></input>
 
       <label for="nombre" class="col-form-label">Fecha de nacimiento:</label>
-      <input disabled type="text" class="form-control" name="fecha_nacimiento" value="{{ nombre['fecha_nacimiento'] }}"></input>
+      <input disabled type="text" class="form-control" name="fecha_nacimiento" value="{{ paciente['fecha_nacimiento'] }}"></input>
     {% endfor %} 
     
-      <label>Enfermedad</label>
-      <select name="nombre_enfermedad" >
+      <label class="col-form-label">Enfermedad</label>
+      <select name="nombre_enfermedad" class="form-control" >
         <option value="0" disabled selected>Seleccione</option>
         {% for vacuna in vacunss %}
-        <option value="{{ vacuna['cod_vacuna']}}">'{{ vacuna['nombre_enfermedad']}}'</option>
+        <option value="{{ vacuna['cod_vacuna']}}">{{ vacuna['nombre_enfermedad']}}</option>
         {% endfor %}
 
       </select>
