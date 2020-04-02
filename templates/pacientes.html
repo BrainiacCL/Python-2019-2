@@ -20,8 +20,9 @@
   <b> <center><h1>Pacientes</h1></center> </b>
 
     <div class="opciones">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Nuevo</button>
-        <a href="vacunas" class="btn btn-danger">Vacunas</a>
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Nuevo</button>
+        <a href="vacunas" class="btn btn-primary">Vacunas</a>
+        <a href="/" class="btn btn-warning">Volver</a>
       
     </div>
     <br>
@@ -86,8 +87,8 @@
           <td>{{ paciente['nombre'] }}</td>
           <td>{{ paciente['fecha_nacimiento'] }}</td>
           <td>
-            <a href="mostrarDatos/{{paciente.rut}}" class="btn btn-danger"> Agregar</a>
-            <a href="vacunasPaciente/{{paciente.rut}}" class="btn btn-danger"> Ver</a>
+            <a href="mostrarDatos/{{paciente.rut}}" class="btn btn-success"> Agregar</a>
+            <a href="vacunasPaciente/{{paciente.rut}}" class="btn btn-primary"> Ver</a>
           </td>
           
           

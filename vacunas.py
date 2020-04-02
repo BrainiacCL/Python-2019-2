@@ -48,7 +48,7 @@ def vacunaNueva(): #funcion para agregar una nueva vacuna a nuestra base de dato
 		
 	return redirect(url_for('vacunas')) #retorna a la vista vacunas
 
-@app.route('/', methods=["POST"])
+@app.route('/agregarPaciente', methods=["POST"])
 def pacienteNuevo(): #se agrega un nuevo paciente a nuestra base de datos
 	cursor = mysql.get_db().cursor()
 	try:
@@ -135,6 +135,12 @@ def vacunarP(rut): #funcion para guardar los datos en la tabla recibe de nuestra
 	
 	return redirect(url_for('pacientes'))
 
+
+
+@app.route('/')
+def index():
+
+	return render_template("index.html")
 
 if __name__ == "__main__":
 	app.run(debug=True)
