@@ -91,6 +91,38 @@ def verPacientes(cod_vacuna):
 
     return render_template("pacientesVacuna.html", vpac = pacientesAll, vacunas = vacunaN)
 
+
+@app.route('/vacunarPacientes/<string:rut>')
+def mostrarDatos(rut):
+
+	cursor = mysql.get_db().cursor()
+	cursor.execute("SELECT cod_vacuna, nombre_enfermedad  FROM vacuna ")
+	vervacunas = cursor.fetchall()
+
+	cursor.execute("SELECT rut, nombre, fecha_nacimiento FROM paciente WHERE rut = %s", (rut))
+	paciente = cursor.fetchall()
+
+
+
+
+	return render_template("vacunarPacientes.html", vacunss = vervacunas, patiens = paciente)
+	
+
+@app.route('/', methods=["POST"])
+def vacunarP():
+	cursor = mysql.get_db().cursor()
+	
+	ahora = datetime.now()
+	fecha_vacunacion = ahora.strftime("%Y-%m-%d")
+	nombre = request.form["nombre"]
+	rut = request.form["rut"]
+	cod_vacuna = request.form["nombre_enfermedad"]
+	sql = "INSERT INTO recibe (rut_paciente, cod_vacuna, fecha_vacunacion) VALUES (%s,%s,%s)"
+	cursor.execute(sql,(rut,cod_vacuna,fecha_vacunacion))
+	
+	return redirect(url_for('pacientes'))
+
+
 if __name__ == "__main__":
 	app.run(debug=True)
 

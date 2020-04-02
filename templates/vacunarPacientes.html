@@ -1,0 +1,89 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Vacunar Paciente</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+<div class="container">
+ {% for nombre in patiens %}
+  <b><center><h1>Vacunar a {{ nombre['nombre'] }}</h1></center></b>
+ {% endfor %}
+  <div class="opciones">
+        <a href="../pacientes" class="btn btn-danger">Volver</a>
+  </div>
+  <br>
+  
+  <form action="{{ url_for('vacunarP')}}" method="POST">
+    {% for nombre in patiens %}
+      <label for="rut" class="col-form-label">Rut:</label>
+      <input disabled type="text" class="form-control" name="rut" value="{{ nombre['rut'] }}">
+     
+
+      <label for="nombre" class="col-form-label">Nombre:</label>
+      <input disabled type="text" class="form-control" name="nombre" value="{{ nombre['nombre'] }}"></input>
+
+      <label for="nombre" class="col-form-label">Fecha de nacimiento:</label>
+      <input disabled type="text" class="form-control" name="fecha_nacimiento" value="{{ nombre['fecha_nacimiento'] }}"></input>
+    {% endfor %} 
+    
+      <label>Enfermedad</label>
+      <select name="nombre_enfermedad" >
+        <option value="0" disabled selected>Seleccione</option>
+        {% for vacuna in vacunss %}
+        <option value="{{ vacuna['cod_vacuna']}}">'{{ vacuna['nombre_enfermedad']}}'</option>
+        {% endfor %}
+
+      </select>
+      <button type="submit" name="enviar" class="btn btn-success">Agregar</button>
+  </form>
+
+
+</body>
+<script type="text/javascript">
+  $(document).ready( function () {
+    $('#myTable').DataTable();
+  });
+
+  $('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+})
+</script>
+</html>
+
+<style >
+  
+html{
+    font-size: 62.5% /** RESET PARA REMS - 62.5% = 10px de 16px **/
+}
+
+.fw-300{
+    font-weight: 300;
+}
+
+.contenedor {
+    max-width: 120rem; /** =1200px **/
+    margin: 0 auto;
+}
+
+.centrar-texto{
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.opciones{
+  display: flex!important;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 3rem;
+}
+  
+</style>

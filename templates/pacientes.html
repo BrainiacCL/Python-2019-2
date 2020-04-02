@@ -82,7 +82,7 @@
           <td>{{ paciente['nombre'] }}</td>
           <td>{{ paciente['fecha_nacimiento'] }}</td>
           <td>
-            <a href="#" class="btn btn-primary"> Agregar</a>
+            <a href="vacunarPacientes/{{paciente.rut}}" class="btn btn-danger"> Agregar</a>
             <a href="vacunasPaciente/{{paciente.rut}}" class="btn btn-danger"> Ver</a>
           </td>
           
@@ -91,6 +91,8 @@
       {% endfor %}
     </tbody>
   </table>
+
+
 </div>
 
 </body>
