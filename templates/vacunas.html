@@ -2,22 +2,11 @@
  Kevin Oviedo
  Ignacio Rodriguez -->
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Vacunas </title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
-  <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-  <link rel="stylesheet" href="estilos.css">
-</head>
-<body>
+{% extends 'layout.html' %}
 
-<div class="container">
+{% block body %}
+
+<div class="contenedor">
  <b><center><h1>Vacunas</h1></center></b>
 
  <div class="opciones">
@@ -77,43 +66,5 @@
      </table>
 </div>
 
-</body>
-<script type="text/javascript">
-  $(document).ready( function () {
-    $('#myTable').DataTable();
-  });
 
-  $('#myModal').on('shown.bs.modal', function () {
-  $('#myInput').trigger('focus')
-})
-</script>
-</html>
-
-<style >
-  
-html{
-    font-size: 62.5% /** RESET PARA REMS - 62.5% = 10px de 16px **/
-}
-
-.fw-300{
-    font-weight: 300;
-}
-
-.contenedor {
-    max-width: 120rem; /** =1200px **/
-    margin: 0 auto;
-}
-
-.centrar-texto{
-    text-align: center;
-    text-transform: uppercase;
-}
-
-.opciones{
-  display: flex!important;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 3rem;
-}
-  
-</style>
+{% endblock %}
